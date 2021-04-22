@@ -5,7 +5,8 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <h1>Hola mundo con Spring Boot</h1>
+        <!--Definimos el paquete en donde se encuentra y la estructura a usar-->
+        <header th:replace="layout/plantilla :: header" />
         <p th:text="${mensaje}"></p>
         <p th:text="${saludo}"></p>
         <br/>
@@ -32,5 +33,6 @@
         <div th:if="${personas == null or personas.empty}">
             <h2>La lista está vacia</h2>
         </div>
+        <footer th:replace="/layout/plantilla :: footer" />
     </body>
 </html>
