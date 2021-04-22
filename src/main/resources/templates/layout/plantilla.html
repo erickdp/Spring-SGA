@@ -7,10 +7,12 @@
     <body>
         <!--Se puede especificar cualquier otro nombre-->
         <header th:fragment="header" >
-            <h1>Control de clientes SGA</h1>
+            <!--Se llama el valor asociado en el archivo messages-->
+            <h1 th:text="#{plantilla.titulo}">Control de clientes SGA</h1>
         </header>
         <footer th:fragment="footer">
-            <p>Derechos reservados a Erick Diaz</p>
+            <!--Se puede llamar tambien de esta otra forma para incrustar el mensaje-->
+            <p> [[#{plantilla.pie-pagina}]] a Erick Diaz</p>
         </footer>
     </body>
 </html>

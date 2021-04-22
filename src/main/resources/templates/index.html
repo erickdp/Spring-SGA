@@ -10,28 +10,30 @@
         <p th:text="${mensaje}"></p>
         <p th:text="${saludo}"></p>
         <br/>
-        <a th:href="@{/agregar}">Crear persona</a>
+        <a th:href="@{/agregar}">[[#{persona.crear}]]</a>
         <!--Si la lista es nulo no se muestra la tabla-->
         <div th:if="${personas != null and !personas.empty}">
             <table border="1" >
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Email</th>
-                    <th>Telefono</th>
+                    <th th:text="#{persona.nombre}"></th>
+                    <th th:text="#{persona.apellido}"></th>
+                    <th th:text="#{persona.email}"></th>
+                    <th th:text="#{persona.telefono}"></th>
+                    <th th:text="#{accion.editar}"></th>
+                    <th th:text="#{accion.eliminar}"></th>
                 </tr>
                 <tr th:each="persona : ${personas}" >
                     <td th:text="${persona.nombre}" />
                     <td th:text="${persona.apellido}" />
                     <td th:text="${persona.email}" />
                     <td th:text="${persona.telefono}" />
-                    <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"/></td>
-                    <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="Eliminar"/></td>
+                    <td><a th:href="@{/editar/} + ${persona.idPersona}" th:text="#{accion.editar}"/></td>
+                    <td><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{accion.eliminar}"/></td>
                 </tr>
             </table>
         </div>
         <div th:if="${personas == null or personas.empty}">
-            <h2>La lista está vacia</h2>
+            <h2>[[#persona.lista-vacia]]</h2>
         </div>
         <footer th:replace="/layout/plantilla :: footer" />
     </body>
