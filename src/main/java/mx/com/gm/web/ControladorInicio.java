@@ -44,11 +44,13 @@ public class ControladorInicio {
         return "modificar";
     }
 
+//    Se valida que los objetos cumplan parametros con las anotaciones
     @PostMapping("/guardar")
-    public String guardar(@Valid Persona persona, Errors error) {
+    public String guardar(@Valid Persona persona, Errors errores) {
 //        Reiniciar la asignacion de llaves primarias en la entidad de la bbdd
 //        alter table nombreTabla AUTO_INCREMENT = 1;
-        if (error.hasErrors()) {
+        if (errores.hasErrors()) {
+//            Se retorna a la vista
             return "modificar";
         }
         this.personaService.guardar(persona);
