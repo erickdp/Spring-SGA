@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" >
+      xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <title>Plantilla</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
@@ -18,6 +19,8 @@
                 <!--Se puede llamar tambien de esta otra forma para incrustar el mensaje-->
                 <span> [[#{plantilla.pie-pagina}]] a Erick Diaz</span>
                 <form th:action="@{/logout}" method="POST">
+                    <b>User: </b> <span sec:authentication="name">Usuario que hizo login</span>
+                    <b>Roles: </b> <span sec:authentication="principal.authorities">Roles</span>
                     <a href="#" onclick="this.parentNode.submit();">Logout</a>
                 </form>
             </div>
