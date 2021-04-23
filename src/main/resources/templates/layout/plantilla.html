@@ -11,8 +11,13 @@
             <h1 th:text="#{plantilla.titulo}">Control de clientes SGA</h1>
         </header>
         <footer th:fragment="footer">
-            <!--Se puede llamar tambien de esta otra forma para incrustar el mensaje-->
-            <p> [[#{plantilla.pie-pagina}]] a Erick Diaz</p>
+            <div>
+                <br />
+                <a th:href="@{/(lang=es)}">ES</a> |
+                <a th:href="@{/(lang=en)}">EN</a> |
+                <!--Se puede llamar tambien de esta otra forma para incrustar el mensaje-->
+                <span> [[#{plantilla.pie-pagina}]] a Erick Diaz</span>
+            </div>
         </footer>
     </body>
 </html>
