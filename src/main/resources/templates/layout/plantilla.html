@@ -17,6 +17,9 @@
                 <a th:href="@{/(lang=en)}">EN</a> |
                 <!--Se puede llamar tambien de esta otra forma para incrustar el mensaje-->
                 <span> [[#{plantilla.pie-pagina}]] a Erick Diaz</span>
+                <form th:action="@{/logout}" method="POST">
+                    <a href="#" onclick="this.parentNode.submit();">Logout</a>
+                </form>
             </div>
         </footer>
     </body>

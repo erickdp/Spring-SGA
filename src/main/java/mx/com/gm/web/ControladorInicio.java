@@ -7,6 +7,8 @@ import mx.com.gm.domain.Persona;
 import mx.com.gm.servicio.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -24,13 +26,15 @@ public class ControladorInicio {
     private PersonaService personaService;
 
     @GetMapping("/")
-    public String inicio(Model model) {
+    public String inicio(Model model, @AuthenticationPrincipal User user) { //Se puede observar que usuario hizo login
 
         List<Persona> personas = (List<Persona>) this.personaService.listarPersonas();
 
         String mensaje = "Hola mundo con Thymeleaf";
         log.info("ejecutando el controlador Spring MVC");
         log.debug("mas detalle del controlador");
+        
+        log.info("Usuario que hizo login: " + user);
 
         model.addAttribute("mensaje", mensaje);
         model.addAttribute("saludo", saludo);
