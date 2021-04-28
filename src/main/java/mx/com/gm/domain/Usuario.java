@@ -18,20 +18,14 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsurio;
 
-    @Column(name = "username")
     @NotEmpty
-    private String nombreUsuario;
+    private String username;
 
-    @Column(name = "password")
     @NotEmpty
-    private String contrasena;
-    
+    private String password;
+
     @OneToMany
     @JoinColumn(name = "id_usuario")
     private List<Rol> roles;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
-    private Persona persona;
 
 }
