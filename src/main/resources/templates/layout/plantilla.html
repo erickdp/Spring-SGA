@@ -1,9 +1,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" 
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head>
+    <head th:fragment="head">
         <title>Plantilla</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}" />
+        <script th:src="@{/webjars/jquery/jquey.min.js}"></script>
+        <script th:src="@{/webjars/popper/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootsrap/js/boostrap.min.js}"></script>
     </head>
     <body>
         <!--Se puede especificar cualquier otro nombre-->
