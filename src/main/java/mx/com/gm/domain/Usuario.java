@@ -1,7 +1,9 @@
 package mx.com.gm.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Entity
@@ -16,10 +18,17 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsurio;
 
-    @Column(name = "nombre_usuario")
+    @Column(name = "username")
+    @NotEmpty
     private String nombreUsuario;
 
+    @Column(name = "password")
+    @NotEmpty
     private String contrasena;
+    
+    @OneToMany
+    @JoinColumn(name = "id_usuario")
+    private List<Rol> roles;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
