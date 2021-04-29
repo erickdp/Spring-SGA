@@ -7,9 +7,13 @@
     <body>
         <!--Definimos el paquete en donde se encuentra y la estructura a usar-->
         <header th:replace="layout/plantilla :: header" />
-        <p th:text="${mensaje}"></p>
-        <p th:text="${saludo}"></p>
-        <br/>
+        <section th:replace="layout/botonesAgregar :: botonesAgregar" />
+        <!--<section th:replace="layout/agregarCliente :: agregarCliete" />-->
+        <!--<section th:replace="layout/listadoClientes :: listadoClientes" />-->
+        <footer th:replace="/layout/plantilla :: footer" />
+
+        <!--<p th:text="${mensaje}"></p>-->
+        <!--<p th:text="${saludo}"></p>-->
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}">[[#{persona.crear}]]</a>
         <!--Si la lista es nulo no se muestra la tabla-->
         <div th:if="${personas != null and !personas.empty}">
@@ -35,6 +39,5 @@
         <div th:if="${personas == null or personas.empty}">
             <h2>[[#persona.lista-vacia]]</h2>
         </div>
-        <footer th:replace="/layout/plantilla :: footer" />
     </body>
 </html>
