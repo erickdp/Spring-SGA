@@ -9,35 +9,11 @@
         <header th:replace="layout/plantilla :: header" />
         <section th:replace="layout/botonesAgregar :: botonesAgregar" />
         <!--<section th:replace="layout/agregarCliente :: agregarCliete" />-->
-        <!--<section th:replace="layout/listadoClientes :: listadoClientes" />-->
+        <section th:replace="layout/listadoClientes :: listadoClientes" />
         <footer th:replace="/layout/plantilla :: footer" />
 
         <!--<p th:text="${mensaje}"></p>-->
         <!--<p th:text="${saludo}"></p>-->
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}">[[#{persona.crear}]]</a>
-        <!--Si la lista es nulo no se muestra la tabla-->
-        <div th:if="${personas != null and !personas.empty}">
-            <table border="1" >
-                <tr>
-                    <th th:text="#{persona.nombre}"></th>
-                    <th th:text="#{persona.apellido}"></th>
-                    <th th:text="#{persona.email}"></th>
-                    <th th:text="#{persona.telefono}"></th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')" >[[#{accion.editar}]]</th>
-                    <th sec:authorize="hasRole('ROLE_ADMIN')" >[[#{accion.eliminar}]]</th>
-                </tr>
-                <tr th:each="persona : ${personas}" >
-                    <td th:text="${persona.nombre}" />
-                    <td th:text="${persona.apellido}" />
-                    <td th:text="${persona.email}" />
-                    <td th:text="${persona.telefono}" />
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.idPersona}" th:text="#{accion.editar}"/></td>
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar(idPersona=${persona.idPersona})}" th:text="#{accion.eliminar}"/></td>
-                </tr>
-            </table>
-        </div>
-        <div th:if="${personas == null or personas.empty}">
-            <h2>[[#persona.lista-vacia]]</h2>
-        </div>
     </body>
 </html>

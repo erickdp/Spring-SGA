@@ -1,16 +1,62 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
     <head>
-        <title>TODO supply a title</title>
+        <title>Listado de clientes</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
+        <section id="clientes" th:fragment="listadoClientes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{persona.titulo-list}]]</h4>
+                            </div>
+                            <div th:if="${personas != null and !personas.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text="#{persona.nombre}">Nombre</th>
+                                            <th th:text="#{persona.saldo}">Saldo</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--el indice que se itera se pone en una variable llamada contador-->
+                                        <tr th:each="persona, contador : ${personas}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${persona.nombre} + ' ' + ${persona.apellido}]]</td>
+                                            <!--Si no existe numero almenos se va a mostrar 0.00-->
+                                            <td>[[${new java.text.DecimalFormat('$#,##0.00').format(persona.saldo)}]]</td>
+                                            <td>
+                                                <a sec:authorized="hasRole('ROLE_ADMIN')" 
+                                                   th:href="@{/editar/} + ${persona.idPersona}"
+                                                   class="btn btn-secondary">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.editar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorized="hasRole('ROLE_ADMIN')" 
+                                                   th:href="@{/eliminar(idPersona=${persona.idPersona})}"
+                                                   class="btn btn-dark">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${personas == null or personas.empty}">
+                                <span th:text="#{personas.lista-vacia}">Lista Vacia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </section>
     </body>
 </html>
