@@ -33,14 +33,14 @@
                                             <!--Si no existe numero almenos se va a mostrar 0.00-->
                                             <td>[[${new java.text.DecimalFormat('$#,##0.00').format(persona.saldo)}]]</td>
                                             <td>
-                                                <a sec:authorized="hasRole('ROLE_ADMIN')" 
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" 
                                                    th:href="@{/editar/} + ${persona.idPersona}"
                                                    class="btn btn-secondary">
                                                     <i class="fas fa-angle-double-right"></i> [[#{accion.editar}]]
                                                 </a>
                                             </td>
                                             <td>
-                                                <a sec:authorized="hasRole('ROLE_ADMIN')" 
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" 
                                                    th:href="@{/eliminar(idPersona=${persona.idPersona})}"
                                                    class="btn btn-dark">
                                                     <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
@@ -52,6 +52,26 @@
                             </div>
                             <div class="text-center p-2" th:if="${personas == null or personas.empty}">
                                 <span th:text="#{personas.lista-vacia}">Lista Vacia</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card text-center bg-danger text-white mb-3">
+                            <div class="card-body">
+                                <h3 th:text="#{persona.saldoTotal}">Saldo Total</h3>
+                                <h4 class="display-4">
+                                    [[${new java.text.DecimalFormat('$#,##0.00').format(saldoTotal)}]]
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-center bg-success text-white mb-3">
+                            <div class="card-body">
+                                <h3 th:text="#{persona.totalClientes}">Total Clientes</h3>
+                                <h4 class="display-4">
+                                        <i class="fa fa-users"></i> [[${totalClientes}]]
+                                </h4>
                             </div>
                         </div>
                     </div>

@@ -40,6 +40,12 @@ public class ControladorInicio {
         model.addAttribute("saludo", saludo);
 //        model.addAttribute("persona", persona);
         model.addAttribute("personas", personas);
+        double saltoTotal = 0D;
+        for (Persona persona : personas) {
+            saltoTotal += persona.getSaldo();
+        }
+        model.addAttribute("saldoTotal", saltoTotal);
+        model.addAttribute("totalClientes", personas.size());
         return "index";
     }
 
